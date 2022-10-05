@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1063779474773",
+    "project_id": "laboratory-fd3df",
+    "storage_bucket": "laboratory-fd3df.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1063779474773:android:52dc0452ef5dee532863dc",
+        "android_client_info": {
+          "package_name": "com.nn.algomhoryalab"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1063779474773-bdc0catorq0rhpn5oh1cp2vq2444e2s7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.nn.algomhoryalab",
+            "certificate_hash": "1c1904a9ade7855b2fe88a5b8ee9c3720d09df29"
+          }
+        },
+        {
+          "client_id": "1063779474773-p30dnrthvutskjji07vjlb0nbf5ihelt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAk_4sn4co2zsWuDN8ZAfs8lskR6SlT--o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1063779474773-p30dnrthvutskjji07vjlb0nbf5ihelt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
