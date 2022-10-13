@@ -45,6 +45,12 @@ dependencies:
   bloc: ^8.0.2
   animated_splash_screen: ^1.2.0
   sizer:
+  carousel_slider:
+  smooth_page_indicator: ^1.0.0+2
+  flutter_map: ^3.0.0
+  internet_connection_checker:
+  fluttertoast:
+
 
 
 dev_dependencies:

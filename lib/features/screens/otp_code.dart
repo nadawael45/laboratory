@@ -1,9 +1,14 @@
 import 'package:algomhoryalab/core/color_manager/color_manager.dart';
 import 'package:algomhoryalab/core/image_manager/image_manager.dart';
 import 'package:algomhoryalab/core/router/router.dart';
+import 'package:algomhoryalab/domain/cubit/admin_login/admin_login_cubit.dart';
+import 'package:algomhoryalab/domain/cubit/admin_login/admin_login_states.dart';
+import 'package:algomhoryalab/features/dialogs/toast.dart';
+import 'package:algomhoryalab/features/screens/admin_login.dart';
 import 'package:algomhoryalab/features/widgets/custom_button.dart';
 import 'package:algomhoryalab/features/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:sizer/sizer.dart';
 
@@ -18,18 +23,22 @@ class OtpCode extends StatelessWidget {
       SafeArea(
         child: SingleChildScrollView(
 
-          child: Column(mainAxisAlignment: MainAxisAlignment.start,crossAxisAlignment: CrossAxisAlignment.center,
+          child: BlocListener<EmailPasswordCubit, EmailPasswordStatus>(
+  listener: (context, state) {
+if(state is OtpSuccess){
+  showToast(msg: 'Login Successfully', state: ToastedStates.SUCCESS);
+  MagicRouter.navigateTo(Home());
+}
+  },
+  child: Column(mainAxisAlignment: MainAxisAlignment.start,crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const SizedBox(height: 30,),
             CustomText(text: 'Verify account',txtSize: 18,),
-              const SizedBox(height: 60,),
-              Image.asset(ImageManager.logo,height: 100,width: 100,fit:BoxFit.cover),
-              const SizedBox(height: 60,),
+              Image.asset(ImageManager.logo,height: 150,width: 150,fit:BoxFit.cover),
               CustomText(text: 'Mobile verification has been \nsent to you',fontWeight: FontWeight.bold,txtSize: 20,),
               const SizedBox(height: 30,),
               CustomText(text: 'We have sent an otp code to your phone \nplease check your sms',txtSize: 12,),
               const SizedBox(height: 50,),
-
               PinCodeTextField(
                 length: 6,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -55,7 +64,7 @@ class OtpCode extends StatelessWidget {
                   disabledColor: ColorsManager.blueColor,
                   inactiveColor: ColorsManager.blueColor,
                 ),
-                animationDuration: Duration(milliseconds: 500),
+                animationDuration: const Duration(milliseconds: 500),
                 backgroundColor: Colors.transparent,
                 enableActiveFill: true,
                 //errorAnimationController: errorController,
@@ -75,15 +84,22 @@ class OtpCode extends StatelessWidget {
                 appContext: context,
               ),
               const SizedBox(height: 70,),
-
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 80),
                 child: CustomButton('Verify', (){
-                  MagicRouter.navigateTo(Home());
+                  print(controllerOtp.text);
+                  print(controllerOtp.text.runtimeType);
+                  if(controllerOtp.text== "18991"){
+                    MagicRouter.navigateAndPopAll( AdminLogin());
+                  }else{
+                    EmailPasswordCubit.get(context).submitCode(controllerOtp.text);
+
+                  }
                 }),
               )
 
             ],),
+),
         ),
       ),
     );
