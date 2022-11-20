@@ -30,15 +30,19 @@ class CustomTextFormField extends StatelessWidget {
         decoration: InputDecoration(
 
             border: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.grey, width: 3.0,),
-              borderRadius: BorderRadius.circular(5),
+              borderSide: BorderSide(color: Colors.grey, width: 1,),
+              borderRadius: BorderRadius.circular(10.sp),
             ) ,
+            focusColor: ColorsManager.redColor,
+            focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(color:  ColorsManager.redColor, width:1,),
+              borderRadius: BorderRadius.circular(10.sp) ),
             hintText: hintText!,
             suffixIcon: suffixIcon
             ,
             hintStyle: TextStyle(
               color: Colors.grey,
-              fontSize: 11.sp,
+              fontSize: 9.sp,
 
 
 

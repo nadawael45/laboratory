@@ -1,5 +1,9 @@
+import 'package:algomhoryalab/core/color_manager/color_manager.dart';
 import 'package:algomhoryalab/core/validator/validator.dart';
+import 'package:algomhoryalab/data/regester_model.dart';
+import 'package:algomhoryalab/domain/cubit/register_patient/register_cubit.dart';
 import 'package:algomhoryalab/features/screens/home.dart';
+import 'package:algomhoryalab/features/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
@@ -15,9 +19,12 @@ class AdminRegister extends StatelessWidget {
    AdminRegister({Key? key}) : super(key: key);
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   TextEditingController phoneController=TextEditingController();
+   TextEditingController nameController=TextEditingController();
+   TextEditingController idController=TextEditingController();
 
 
-  @override
+
+   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
@@ -40,17 +47,33 @@ class AdminRegister extends StatelessWidget {
                 children: [
                   Image.asset(ImageManager.logo_ful,width: 100.w,height: 30.h,fit: BoxFit.fill,),
                   const SizedBox(height: 50,),
+                  CustomText(text: 'Register a new Patient',color: ColorsManager.redColor,txtSize:13.sp),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 20),
                     child: CustomTextFormField(hintText: 'Enter Patient Phone',controller:phoneController ,validate: Validator.validatePhone,),
                   ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 20),
+                    child: Row(
+                      children: [
+                        Expanded(child: CustomTextFormField(hintText: 'Enter Patient Name',controller:nameController ,validate: Validator.validateName,)),
+                        SizedBox(width: 5.w,),
+                        Expanded(child: CustomTextFormField(hintText: 'Enter Patient ID',controller:idController ,validate: Validator.validateEmpty,)),
+
+                      ],
+                    ),
+                  ),
+
                   const SizedBox(height: 30,),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: CustomButton('Done', (){
                       if(formKey.currentState!.validate()){
-                        EmailPasswordCubit.get(context).phoneAuth("+2"+phoneController.text);
-
+                       RegisterCubit.get(context).addPatient(phoneController.text, RegisterModel(
+                         phone: phoneController.text,
+                         patientId: idController.text,
+                         name: nameController.text
+                       ));
                       }
 
                     }),
