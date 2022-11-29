@@ -1,7 +1,9 @@
 import 'package:algomhoryalab/core/color_manager/color_manager.dart';
 import 'package:algomhoryalab/core/router/router.dart';
 import 'package:algomhoryalab/domain/cubit/admin_login/admin_login_cubit.dart';
+import 'package:algomhoryalab/domain/cubit/offers/offers_bloc.dart';
 import 'package:algomhoryalab/domain/cubit/register_patient/register_cubit.dart';
+import 'package:algomhoryalab/domain/cubit/results/results_bloc.dart';
 import 'package:algomhoryalab/features/screens/on_boarding.dart';
 import 'package:algomhoryalab/features/screens/splash.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -24,7 +26,9 @@ class MyApp extends StatelessWidget {
       MultiBlocProvider(
         providers: [
           BlocProvider(create:  (_) =>EmailPasswordCubit()),
-          BlocProvider(create:  (_) =>RegisterCubit())
+          BlocProvider(create:  (_) =>RegisterCubit()),
+          BlocProvider(create:  (_) =>ResultBloc()),
+          BlocProvider(create:  (_) =>OffersBloc()..getMyProduct())
 
         ],
         child: Sizer(

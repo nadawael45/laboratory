@@ -2,6 +2,7 @@ import 'package:algomhoryalab/core/color_manager/color_manager.dart';
 import 'package:algomhoryalab/core/validator/validator.dart';
 import 'package:algomhoryalab/data/regester_model.dart';
 import 'package:algomhoryalab/domain/cubit/register_patient/register_cubit.dart';
+import 'package:algomhoryalab/domain/cubit/register_patient/register_states.dart';
 import 'package:algomhoryalab/features/screens/home.dart';
 import 'package:algomhoryalab/features/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
@@ -30,13 +31,12 @@ class AdminRegister extends StatelessWidget {
       backgroundColor: Colors.white,
       body: SafeArea(
         child: SingleChildScrollView(
-          child: BlocListener<EmailPasswordCubit, EmailPasswordStatus>(
+          child: BlocListener<RegisterCubit, RegisterStates>(
             listener: (context, state) {
-              if(state is PhoneAuthSuccess)
+              if(state is RegisterSuccess)
               {
                 MagicRouter.navigateTo( Home());
-              }if(state is PhoneAuthFailed){
-                showToast(msg: state.error.toString(), state: ToastedStates.ERROR);
+              }if(state is RegisterFailed){
               }
 
             },
@@ -78,6 +78,16 @@ class AdminRegister extends StatelessWidget {
 
                     }),
                   ),
+                  const SizedBox(height: 30,),
+
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: CustomButton('Go To Home', (){
+                    MagicRouter.navigateTo(Home());
+
+                    }),
+                  ),
+
 
 
 
