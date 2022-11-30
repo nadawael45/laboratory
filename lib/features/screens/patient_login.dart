@@ -1,6 +1,6 @@
 import 'package:algomhoryalab/core/color_manager/color_manager.dart';
 import 'package:algomhoryalab/core/validator/validator.dart';
-import 'package:algomhoryalab/data/regester_model.dart';
+import 'package:algomhoryalab/data/models/regester_model.dart';
 import 'package:algomhoryalab/domain/cubit/register_patient/register_cubit.dart';
 import 'package:algomhoryalab/domain/cubit/register_patient/register_states.dart';
 import 'package:algomhoryalab/features/screens/home.dart';

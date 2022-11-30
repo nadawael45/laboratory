@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
         providers: [
           BlocProvider(create:  (_) =>EmailPasswordCubit()),
           BlocProvider(create:  (_) =>RegisterCubit()),
-          BlocProvider(create:  (_) =>ResultBloc()),
+          BlocProvider(create:  (_) =>ResultBloc()..getMyResult()),
           BlocProvider(create:  (_) =>OffersBloc()..getMyProduct())
 
         ],
